@@ -15,5 +15,6 @@ tempInt = int(math.ceil(temp))
 def temperature():
     return temp
 
+
 def temperatureint():
     return tempInt

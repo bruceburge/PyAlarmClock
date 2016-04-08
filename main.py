@@ -1,3 +1,3 @@
-import BlinkStick
+import LedController
 
-BlinkStick.slow_illumination()
+LedController.slow_illumination()
