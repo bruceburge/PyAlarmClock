@@ -1,8 +1,8 @@
-from flask import Flask
+import flask
 import OpenWeatherMap
 import LedController
 
-app = Flask(__name__)
+app = flask(__name__)
 app.secret_key = '$%bYwkupan1pJFja5ATcNH!!!!!'
 
 @app.route('/')
@@ -12,7 +12,7 @@ def index():
 @app.route('/temperature')
 def temp():
     # return temperature in whatever format the rest request to openweather was made in
-    return str(OpenWeatherMap.temperature())
+    return flask.jsonify(OpenWeatherMap.temperature())
 
 @app.route('/turnoffleds')
 def turnoff():
