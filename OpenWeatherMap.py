@@ -11,6 +11,9 @@ temp = data['main']['temp']
 tempInt = int(math.ceil(temp))
 
 
+def climateConditions():
+    return data
+
 def temperature():
     return data['main']['temp']
 

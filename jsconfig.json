@@ -4,6 +4,15 @@
 	"compilerOptions": {
 		"target": "es6"
 	},
+	    "files": [
+        "static/assets/js/bootstrap.min.js",
+		"static/assets/js/clock.js",
+		"static/assets/js/jquery.min.js",		
+		"static/assets/js/jquery.slabtext.js",
+		"static/assets/js/jquery.slabtext.min.js",		
+		"static/assets/js/jquery.slim.min.js",		
+		"static/assets/js/moment-with-locales.min.js"
+		],
 	"exclude": [
 		"node_modules",
 		"bower_components",

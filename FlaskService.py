@@ -16,8 +16,15 @@ def index():
 @app.route('/UIdata')
 def uidata():
 
-    return flask.jsonify(temperature=OpenWeatherMap.temperature(), date=str(datetime.datetime.now()))
-
+    return flask.jsonify(
+        temperature=OpenWeatherMap.temperature(),
+        weather= '',
+        date=str(datetime.datetime.now())
+        )
+        
+@app.route('/climate')
+def climate():
+    return flask.jsonify(OpenWeatherMap.climateConditions())
 
 @app.route('/temperature')
 def temp():

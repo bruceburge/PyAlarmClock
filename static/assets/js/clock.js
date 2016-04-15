@@ -1,8 +1,7 @@
 $(function(){
 
     var temp = 0.0;
-    var weatherCondition ="N/A";
-    var serverNow;
+    var icon = "01d";
 	var clock = $('#clock');
     var day = $('#day');
     var progressbar = $('#dayProgressBar');
@@ -10,15 +9,14 @@ $(function(){
     var fetchDataCounter = 0;
 
     function getUiData(){
-        $.getJSON("../UIdata", function(data) {
-           temp = data.temperature;
-           serverNow = data.date;
-           //weatherCondition = data.weather;
+        $.getJSON("../climate", function(data) {
+          temp =  data.main.temp;
+          icon = data.weather[0].icon;
         });
     }
 
-    getUiData();
-	(function update_time(){
+
+	function update_time(){
         var percent = (Math.round((moment().hours()/24)*100)) + '%'
         progressbar.width(percent);
         progressbar.text(percent);
@@ -26,6 +24,7 @@ $(function(){
 		clock.text(moment().format("HH:mm:ss")).slabText();
 		day.text(moment().format("dddd"));
 		day.append(" "+temp+"&deg;F");
+		day.append(" <img src='http://openweathermap.org/img/w/"+icon+".png' />");
 		//console.debug(now);
 		//update conditions in UI every ten seconds
 		if(fetchDataCounter >= 60)
@@ -38,6 +37,9 @@ $(function(){
 		    fetchDataCounter++;
 		}
 
-		setTimeout(update_time, 1000);	
-	})();	
+		setTimeout(update_time, 1000);
+	};
+
+	getUiData();
+	update_time();
 });
