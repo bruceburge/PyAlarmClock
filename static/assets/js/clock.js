@@ -29,7 +29,7 @@ $(function(){
    }).always(function()
     {
       //console.log( "complete" );
-    });
+    })
    )
 
     function getWeatherIconAndTitle(resp) {

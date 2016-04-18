@@ -1,7 +1,7 @@
 from flask import Flask
 import flask
 import OpenWeatherMap
-import datetime
+import AlarmStorage
 
 app = Flask(__name__)
 app.secret_key = '$%bYwkupan1pJFja5ATcNH!!!!!'
@@ -9,28 +9,21 @@ app.secret_key = '$%bYwkupan1pJFja5ATcNH!!!!!'
 
 @app.route('/')
 def index():
-    # print flask.url_for('static', filename='timeTest.html')
+    # print flask.url_for('static', filename='Index.html')
 
-    return flask.redirect(flask.url_for('static', filename='timeTest.html'))
+    return flask.redirect(flask.url_for('static', filename='Index.html'))
 
-@app.route('/UIdata')
-def uidata():
-
-    return flask.jsonify(
-        temperature=OpenWeatherMap.temperature(),
-        weather= '',
-        date=str(datetime.datetime.now())
-        )
-        
 @app.route('/climate')
 def climate():
     return flask.jsonify(OpenWeatherMap.climateConditions())
 
-@app.route('/temperature')
-def temp():
-    # return temperature in whatever format the rest request to openweather was made in
-    return flask.jsonify(temperature=OpenWeatherMap.temperature())
+@app.route('/alarmlist')
+def alarmlist():
+    return flask.jsonify(AlarmStorage.ReturnAlarmsInJson())
 
+@app.route('/saveAlarms')
+def saveAlarms():
+    return
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=int("80"), debug=True)

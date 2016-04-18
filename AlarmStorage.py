@@ -1,28 +1,22 @@
-import shelve
+import json
+import datetime
 
 
-def writeToDb():
-    s = shelve.open('test_shelf.db', writeback=True)
-    try:
-        s['20160413053000'] = {'string': '20160413053000', 'list': [0, 1, 1, 1, 1, 1, 0]}
-        print s['20160413053000']
-    finally:
-        s.close()
+def SaveAlarmsToJson(data, key):
+    # get existing alarms
+    jsonData = ReturnAlarmsInJson()
+    # either over right data for that key, or add it to the json
+    jsonData[key] = data
+    # save the results back to the json file.
+    with open('alarms.json', 'w') as fp:
+         json.dump(jsonData, fp)
 
 
-# writeToDb()
+def ReturnAlarmsInJson():
+    with open('alarms.json', 'r') as fp:
+        return json.load(fp)
 
-def readFromDb():
-    s = shelve.open('test_shelf.db', writeback=True)
-    try:
-
-        for r in s:
-            print "key: ", r, " = ", s[r]
-
-            # print s['20160413053000']
-    finally:
-        s.close()
-
-
-writeToDb()
-readFromDb()
+#data = {}
+#data = {'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}
+#key = str(datetime.datetime.now().hour * 60 + datetime.datetime.now().minute)
+#SaveAlarmsToJson(data, key)
