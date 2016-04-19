@@ -23,6 +23,7 @@ def alarmlist():
 
 @app.route('/saveAlarms')
 def saveAlarms():
+    # {key: {'timeInMinutes': key, 'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}}
     return
 
 if __name__ == '__main__':

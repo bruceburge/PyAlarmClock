@@ -8,21 +8,20 @@
     <link href="assets/css/slabtext.css" rel="stylesheet"/>
     <link href="assets/css/weather-icons.min.css" rel="stylesheet"/>
     <style>
-        body{
 
+        #AlarmList
+        {
+         background: #CCCCCC;
+        }
+
+        body{
+          padding-top: 70px;
           background: #333333;
           font-family: 'Oxygen Mono';
           text-transform:uppercase;
         }
 
-        .btn {
-          font-size: 4vw;
-          text-transform:uppercase;
-          }
 
-          #day{
-            font-size: 2vw;
-          }
 
 
     </style>
@@ -30,6 +29,7 @@
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false"
@@ -39,7 +39,7 @@
             <a class="navbar-brand" href="#">PyAlarmClock</a></div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li >
+                <li>
                     <a href="index.html">Home</a>
                 </li>
                 <li class="active">
@@ -50,18 +50,21 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container theme-showcase" role="main" align="center">
-<table class="table table-striped" id="AlarmList">
-    <thead>
-      <tr>
-        <th>Time</th>
-        <th>Days</th>
-        <th>Is Active</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-    </table>
+<div class="container-fluid" role="main" align="center">
+    <div class="table-responsive">
+        <table class="table table-striped" id="AlarmList">
+            <thead>
+            <tr>
+                <th>Remove</th>
+                <th>Time</th>
+                <th>Days</th>
+                <th>Is Active</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 
@@ -69,5 +72,6 @@
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/moment-with-locales.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/alarms.js"></script>
 </body>
 </html>
