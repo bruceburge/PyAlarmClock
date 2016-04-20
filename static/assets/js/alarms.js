@@ -6,7 +6,7 @@ $(function(){
        {
             $.each(data, function() {
 
-            var button = ('<td><button type="button" id="id'+this.timeInMinutes+'" class="btnRemove btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-sign"></span></button></td>');
+            var button = ('<td><button type="button" id="id|'+this.timeInMinutes+'" class="btnRemove btn btn-default btn-sm"><span class="glyphicon glyphicon-remove-sign"></span></button></td>');
             var data =    (
                     '<td>'+moment(0,"HH").minute(this.timeInMinutes).format("HH:mm")
                     + '</td><td>'
@@ -32,7 +32,21 @@ $(function(){
         {
             if(confirm("Do you want to delete"))
             {
-                alert("good bye: "+this.id)
+                var tmpId = this.id.split('|')[1];
+                $.ajax({
+                url: "../deletealarmbyid/"+tmpId
+                }).done(function (data)
+                {
+                  console.log(data);
+                  alert("good bye: "+tmpId)
+
+                   $(document).ajaxStop(function()
+                   {
+                        location.reload(true);
+                   });
+                });
+
+
             }
         });
 });

@@ -21,6 +21,11 @@ def climate():
 def alarmlist():
     return flask.jsonify(AlarmStorage.ReturnAlarmsInJson())
 
+@app.route('/deletealarmbyid/<id>')
+def deleteAlarmById(id=0):
+    return AlarmStorage.DeleteAlarmByID(id=id)
+
+
 @app.route('/saveAlarms')
 def saveAlarms():
     # {key: {'timeInMinutes': key, 'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}}
