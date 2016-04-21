@@ -50,12 +50,181 @@
         <!--/.nav-collapse -->
     </div>
 </nav>
-<div class="container-fluid" role="main" align="center">
+<div class="container" role="main" align="center">
+
+
+  <div class="panel panel-default">
+      <div class="panel-heading" data-toggle="collapse" data-target="#demo">Alarm Form</div>
+    <div class="panel-body collapse" id="demo">
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-2 control-label" for="AlarmStatus">Alarm Status</label>
+  <div class="col-md-3"> 
+    <label class="radio-inline" for="AlarmStatus-0">
+      <input type="radio" name="AlarmStatus" id="AlarmStatus-0" value="0">
+      Inactive
+    </label>
+    <label class="radio-inline" for="AlarmStatus-1">
+      <input type="radio" name="AlarmStatus" id="AlarmStatus-1" value="1" checked="checked">
+      Active
+    </label>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-2 control-label" for="hour">Select Time</label>
+  <div class="col-md-2">
+    <select id="hour" name="hour" class="form-control">
+      <option value="0">00</option>
+      <option value="1">01</option>
+      <option value="2">02</option>
+      <option value="3">03</option>
+      <option value="4">04</option>
+      <option value="5">05</option>
+      <option value="6">06</option>
+      <option value="7">07</option>
+      <option value="8">08</option>
+      <option value="9">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <select id="minute" name="minute" class="form-control">
+      <option value="0">00</option>
+      <option value="1">01</option>
+      <option value="2">02</option>
+      <option value="3">03</option>
+      <option value="4">04</option>
+      <option value="5">05</option>
+      <option value="6">06</option>
+      <option value="7">07</option>
+      <option value="8">08</option>
+      <option value="9">09</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+      <option value="19">19</option>
+      <option value="20">20</option>
+      <option value="21">21</option>
+      <option value="22">22</option>
+      <option value="23">23</option>
+      <option value="24">24</option>
+      <option value="25">25</option>
+      <option value="26">26</option>
+      <option value="27">27</option>
+      <option value="28">28</option>
+      <option value="29">29</option>
+      <option value="30">30</option>
+      <option value="31">31</option>
+      <option value="32">32</option>
+      <option value="33">33</option>
+      <option value="34">34</option>
+      <option value="35">35</option>
+      <option value="36">36</option>
+      <option value="37">37</option>
+      <option value="38">38</option>
+      <option value="39">39</option>
+      <option value="40">40</option>
+      <option value="41">41</option>
+      <option value="42">42</option>
+      <option value="43">43</option>
+      <option value="44">44</option>
+      <option value="45">45</option>
+      <option value="46">46</option>
+      <option value="47">47</option>
+      <option value="48">48</option>
+      <option value="49">49</option>
+      <option value="50">50</option>
+      <option value="51">51</option>
+      <option value="52">52</option>
+      <option value="53">53</option>
+      <option value="54">54</option>
+      <option value="55">55</option>
+      <option value="56">56</option>
+      <option value="57">57</option>
+      <option value="58">58</option>
+      <option value="59">59</option>
+    </select>
+  </div>
+</div>
+
+<!-- Multiple Checkboxes (inline) -->
+<div class="form-group">
+  <label class="col-md-2 control-label" for="days">Days</label>
+  <div class="col-md-6">
+    <label class="checkbox-inline" for="days-0">
+      <input type="checkbox" name="days" id="days-0" value="0">
+      Sun
+    </label>
+    <label class="checkbox-inline" for="days-1">
+      <input type="checkbox" name="days" id="days-1" value="1">
+      Mon
+    </label>
+    <label class="checkbox-inline" for="days-2">
+      <input type="checkbox" name="days" id="days-2" value="2">
+      Tues
+    </label>
+    <label class="checkbox-inline" for="days-3">
+      <input type="checkbox" name="days" id="days-3" value="3">
+      Weds
+    </label>
+    <label class="checkbox-inline" for="days-4">
+      <input type="checkbox" name="days" id="days-4" value="4">
+      Thur
+    </label>
+    <label class="checkbox-inline" for="days-5">
+      <input type="checkbox" name="days" id="days-5" value="5">
+      Fri
+    </label>
+    <label class="checkbox-inline" for="days-6">
+      <input type="checkbox" name="days" id="days-6" value="6">
+      Sat
+    </label>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <div class="col-md-7">
+    <button id="btnSave" name="btnSave" class="btn btn-inverse">Save</button>
+  </div>
+</div>
+
+</fieldset>
+</form>         
+     </div>
+     </div>
+
+
     <div class="table-responsive">
         <table class="table table-striped" id="AlarmList">
             <thead>
             <tr>
                 <th>Remove</th>
+                <th>Modify</th>
                 <th>Time</th>
                 <th>Days</th>
                 <th>Is Active</th>
