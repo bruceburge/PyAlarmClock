@@ -12,6 +12,7 @@ def SaveAlarmsToJson(data):
     # save the results back to the json file.
     with open('static/assets/js/alarms.json', 'w') as fp:
         json.dump(jsonData, fp)
+    return '1'
 
 
 def DeleteAlarmByID(id):
@@ -33,9 +34,9 @@ def ReturnAlarmsInJson():
     #  WTF
 
 
-data = {}
-key = str(datetime.datetime.now().hour * 60 + datetime.datetime.now().minute)
-data = {key: {'timeInMinutes': key, 'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}}
+# data = {}
+# key = str(datetime.datetime.now().hour * 60 + datetime.datetime.now().minute)
+# data = {key: {'timeInMinutes': key, 'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}}
 
 # SaveAlarmsToJson(data)
 # DeleteAlarmByID(586)

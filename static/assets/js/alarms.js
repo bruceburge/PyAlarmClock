@@ -33,7 +33,7 @@ $(function(){
         {
                 var tmpId = this.id.split('|')[1];
                 //console.log(alarmListData[tmpId]);
-                populateForm(alarmListData[tmpId]);
+                populateForm(alarmListData[tmpId],tmpId);
                 $('#demo').collapse("show");
 
         });
@@ -71,7 +71,34 @@ $(function(){
 
         $( "form" ).submit(function( event ) {
           var x = $( this ).serializeArray();
-          buildStorageJson(x);
+          var oldId = $('input[name=oldId]').val();
+          var alarmData = buildStorageJson(x);
+
+          $.ajax({
+            url: "../saveAlarms",
+            type: "POST",
+            data: JSON.stringify(alarmData),
+            processData: false,
+            contentType: "application/json; charset=UTF-8",
+          }).done(function (data)
+                {
+                  console.log(data);
+                  //if old id is set, but isn't our current data id, then erase the old record we
+                  //edited.
+                  if(isNaN(oldId) == false && alarmData[oldId] == null)
+                  {
+                    $.ajax({
+                      url: "../deletealarmbyid/"+parseInt(oldId)
+                    })
+                  }
+
+                   $(document).ajaxStop(function()
+                   {
+                        location.reload(true);
+                   });
+                });
+
+
           event.preventDefault();
         });
 
@@ -79,7 +106,7 @@ $(function(){
 
 
 
-function populateForm(json)
+function populateForm(json,oldId)
 {
 
     ($('input:radio[name=AlarmStatus]')[json.isActive]).checked = true;
@@ -89,6 +116,7 @@ function populateForm(json)
     minute = parseInt(json.timeInMinutes)%60;
     $('select[name=minute]').val(minute);
     $('select[name=hour]').val(hour);
+    $('input[name=oldId]').val(oldId);
 
     for(i=0;i<json.days.length;i++)
     {
@@ -130,10 +158,11 @@ var tmp = {};
 tmp[tmp[1].timeInMinutes] = tmp[1]; //once time in minutes is known, move data to that object
 delete tmp[1]; // remove template
 
-//pass to server. 
-console.log(tmp);
-console.log(JSON.stringify(tmp));
+//pass to server.
+//console.log(tmp);
+//console.log(JSON.stringify(tmp));
 
+return tmp;
 }
 
 

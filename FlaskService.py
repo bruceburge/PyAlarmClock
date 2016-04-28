@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import flask
 import OpenWeatherMap
 import AlarmStorage
@@ -26,10 +26,13 @@ def deleteAlarmById(id=0):
     return AlarmStorage.DeleteAlarmByID(id=id)
 
 
-@app.route('/saveAlarms')
+@app.route('/saveAlarms', methods = ['POST'])
 def saveAlarms():
     # {key: {'timeInMinutes': key, 'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}}
-    return
+    json = request.json
+    # print(json)
+    AlarmStorage.SaveAlarmsToJson(json)
+    return '1'
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=int("80"), debug=True)
