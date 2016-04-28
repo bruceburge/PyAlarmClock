@@ -7,6 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Oxygen+Mono' rel='stylesheet' type='text/css'>
     <link href="assets/css/slabtext.css" rel="stylesheet"/>
     <link href="assets/css/weather-icons.min.css" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="assets/favicon.ico" />
     <style>
 
         #AlarmList
@@ -56,12 +57,12 @@
   <div class="panel panel-default">
       <div class="panel-heading" data-toggle="collapse" data-target="#demo">Alarm Form</div>
     <div class="panel-body collapse" id="demo">
-<form class="form-horizontal">
+<form class="form-horizontal" id="alarmForm">
 <fieldset>
 
 <!-- Multiple Radios (inline) -->
 <div class="form-group">
-  <label class="col-md-2 control-label" for="AlarmStatus">Alarm Status</label>
+  <label class="col-md-2 control-label" for="isActive">Alarm Status</label>
   <div class="col-md-3"> 
     <label class="radio-inline" for="AlarmStatus-0">
       <input type="radio" name="AlarmStatus" id="AlarmStatus-0" value="0">
@@ -209,7 +210,7 @@
 <!-- Button -->
 <div class="form-group">
   <div class="col-md-7">
-    <button id="btnSave" name="btnSave" class="btn btn-inverse">Save</button>
+    <a href="#" class="btn btn-block btn-default btnSaveAlarm"><span class="glyphicon glyphicon-floppy-disk"></span> Save</a>
   </div>
 </div>
 

@@ -37,6 +37,6 @@ data = {}
 key = str(datetime.datetime.now().hour * 60 + datetime.datetime.now().minute)
 data = {key: {'timeInMinutes': key, 'isActive': 1, 'days': [0, 1, 1, 1, 1, 1, 0]}}
 
-SaveAlarmsToJson(data)
+# SaveAlarmsToJson(data)
 # DeleteAlarmByID(586)
-print ReturnAlarmsInJson()
+# print ReturnAlarmsInJson()

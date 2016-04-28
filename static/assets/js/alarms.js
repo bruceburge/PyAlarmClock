@@ -34,6 +34,7 @@ $(function(){
                 var tmpId = this.id.split('|')[1];
                 //console.log(alarmListData[tmpId]);
                 populateForm(alarmListData[tmpId]);
+                $('#demo').collapse("show");
 
         });
 
@@ -60,6 +61,20 @@ $(function(){
 
             }
         });
+
+
+        $(document).on('click', '.btnSaveAlarm', function()
+        {
+            $("#alarmForm").submit();
+        }
+        );
+
+        $( "form" ).submit(function( event ) {
+          var x = $( this ).serializeArray();
+          buildStorageJson(x);
+          event.preventDefault();
+        });
+
 });
 
 
@@ -67,7 +82,7 @@ $(function(){
 function populateForm(json)
 {
 
-    $('input:radio[name=AlarmStatus]')[json.isActive].checked = true;
+    ($('input:radio[name=AlarmStatus]')[json.isActive]).checked = true;
     var hour = 0;
     var minute = 0;
     hour = parseInt(json.timeInMinutes/60);
@@ -77,20 +92,47 @@ function populateForm(json)
 
     for(i=0;i<json.days.length;i++)
     {
-        //console.log(i);
-        //console.log($('input:checkbox[name=days]')[i]);
-        //console.log($('input:checkbox[name=days]')[i].);
+
         if(json.days[i] == 1)
          {
-            ($('input:checkbox[name=days]')[i]).checked = true;
-            ($('input:checkbox[name=days]')[i]).value = 1;
+            ($('input:checkbox[name="days"]')[i]).checked = true;
          }
          else
          {
-            ($('input:checkbox[name=days]')[i]).checked = false;
-            ($('input:checkbox[name=days]')[i]).value = 0;
+            ($('input:checkbox[name="days"]')[i]).checked = false;
          }
     }
+
+}
+
+//converts form data to json for server use
+function buildStorageJson(serializeArray)
+{
+  //{"568": {"timeInMinutes": "568", "days": [0, 1, 1, 1, 1, 1, 0], "isActive": 1}
+
+//json object structure stub
+var tmp = {};
+  tmp[1] = {
+  "timeInMinutes": 0,
+  "isActive": 0,
+  "days": [0,0,0,0,0,0,0]
+};
+
+   $.each(serializeArray, function(i, field)
+    {
+      if(field.name == "AlarmStatus") { tmp[1].isActive = field.value}
+      else if(field.name == "hour") {tmp[1].timeInMinutes += parseInt(field.value * 60)} //convert hours to minutes
+      else if(field.name == "minute") {tmp[1].timeInMinutes += parseInt(field.value)}
+      else if(field.name == "days") {tmp[1].days[field.value] = 1} //form will only submit days checked, their value is their index
+    });
+
+
+tmp[tmp[1].timeInMinutes] = tmp[1]; //once time in minutes is known, move data to that object
+delete tmp[1]; // remove template
+
+//pass to server. 
+console.log(tmp);
+console.log(JSON.stringify(tmp));
 
 }
 
