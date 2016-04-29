@@ -1,5 +1,5 @@
 import json
-import datetime
+import time
 
 
 def SaveAlarmsToJson(data):

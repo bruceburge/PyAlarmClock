@@ -85,7 +85,7 @@ $(function(){
                   console.log(data);
                   //if old id is set, but isn't our current data id, then erase the old record we
                   //edited.
-                  if(isNaN(oldId) == false && alarmData[oldId] == null)
+                  if(isNaN(parseInt(oldId)) == false && alarmData[oldId] == null)
                   {
                     $.ajax({
                       url: "../deletealarmbyid/"+parseInt(oldId)

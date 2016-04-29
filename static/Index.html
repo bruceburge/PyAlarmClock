@@ -14,6 +14,13 @@
     <link href="assets/css/weather-icons.min.css" rel="stylesheet"/>
     <link rel="icon" type="image/png" href="assets/favicon.ico" />
     <style>
+
+        #source
+        {
+          font-size: -1vw;
+          text-transform:lowercase;
+        }
+
         body{        
 
           background: #333333;
@@ -60,7 +67,9 @@
 
     <div class="jumbotron">
         <h1 id="clock">00:00:00</h1>
+        <span id="source"></span><br/>
         <span id="day"></span>
+
     </div>
     <button id="turnOffAlarm" type="button" class="btn btn-primary btn-lg">
         Turn Off Alarm
@@ -75,6 +84,12 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
   $("h1").slabText();
+
+ $(document).on('click', '#turnOffAlarm', function()
+ {
+     $.get("../turnoffalarm");
+ });
+
 
 </script>
 <script src="assets/js/clock.js"></script>

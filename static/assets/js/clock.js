@@ -11,7 +11,7 @@ $(function(){
 
 	var clock = $('#clock');
     var day = $('#day');
-    var progressbar = $('#dayProgressBar');
+    var source = $('#source');
 
     var fetchDataCounter = 0;
     var weatherIcons;
@@ -64,13 +64,32 @@ $(function(){
          });
     }
 
-	function update_time(){
+	function update_time()
+	{
+    $.getJSON('../servertime')
+       .done(function (data)
+       {
+           clock.text(data.ct).slabText();
+           day.text(data.day);
+           day.append(" "+temp+"&deg;F");
+		   day.append(" <i class='"+iconData['icon']+"' title='"+iconData['label']+"'></i>");
+           source.text("(server)");
+       }).fail(function()
+       {
+          console.log( "error" );
+          clock.text(moment().format("HH:mm:ss")).slabText();
+          day.text(moment().format("dddd"));
+          day.append(" "+temp+"&deg;F");
+		  day.append(" <i class='"+iconData['icon']+"' title='"+iconData['label']+"'></i>");
+		  source.text("(local)");
 
-		clock.text(moment().format("HH:mm:ss")).slabText();
 
-		day.text(moment().format("dddd"));
-		day.append(" "+temp+"&deg;F");
-		day.append(" <i class='"+iconData['icon']+"' title='"+iconData['label']+"'></i>");
+       }).always(function()
+        {
+          //console.log( "complete" );
+        })
+
+
 
 		//update conditions in UI every 60 seconds
 		if(fetchDataCounter >= 60)
